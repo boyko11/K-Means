@@ -6,16 +6,16 @@ Wisconsin Breast Cancer Dataset:
 https://archive.ics.uci.edu/ml/datasets/Breast+Cancer+Wisconsin+(Diagnostic)
 
 ## Purpose
-Gain familiarity with the algorithm by developing it from scratch.
+Gain familiarity with the algorithm by developing it from scratch.  
 Hence, best ML practices such as train/test/cross-validation splits 
 are NOT prioritized.
 
 ## Implementation
-init k random gaussian centroids
-for each training record calculate euclidean distance to all the centroids
-for each record assign membership to the the closest centroid
-update centroids - the mean of all data records which are members of the centroid cluster
-converge if the centroids stop changing
+init k random gaussian centroids  
+for each training record calculate euclidean distance to all the centroids  
+for each record assign membership to the the closest centroid  
+update centroids - the mean of all data records which are members of the centroid cluster  
+converge if the centroids stop changing  
 
 ## Config
 K = 2
