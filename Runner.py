@@ -1,7 +1,6 @@
 from service.data_service import DataService
-import numpy as np
 from kmeans_learner import KMeansLearner
-from service.plot_service import PlotService
+from service.report_service import ReportService
 
 
 class Runner:
@@ -9,6 +8,7 @@ class Runner:
     def __init__(self, normalization_method='z'):
         self.kmeans_learner = None
         self.normalization_method = normalization_method
+        self.report_service = ReportService()
 
     def run(self, k=2):
 
@@ -24,15 +24,7 @@ class Runner:
         self.kmeans_learner.train(normalized_feature_data, k=k)
         cluster_assignments = self.kmeans_learner.classify(normalized_feature_data)
 
-        plot_data = {}
-
-        for cluster_index in range(k):
-            cluster_0_assignments_indices = np.where(cluster_assignments == cluster_index)
-            data_records_assigned_to_cluster = labels_data[cluster_0_assignments_indices]
-            unique_labels, counts_per_label = np.unique(data_records_assigned_to_cluster, return_counts=True)
-            plot_data[cluster_index] = counts_per_label
-
-        PlotService().plot_clusters_per_label_barchart(('Benign', 'Malignant'), k, plot_data)
+        self.report_service.report(cluster_assignments, labels_data, k)
 
 
 if __name__ == "__main__":
